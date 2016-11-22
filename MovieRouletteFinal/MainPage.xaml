@@ -1,0 +1,38 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MovieRouletteFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:MainViewModel="using:MovieRoulette.MainViewModel"
+    x:Class="MovieRouletteFinal.MainPage"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-283,0">
+        <Grid.DataContext>
+            <MainViewModel:MovieViewModel/>
+        </Grid.DataContext>
+
+        <ListView x:Name="MovieList" Header="Movie Arvhice" HorizontalAlignment="Left" Height="403" Margin="10,64,0,0" VerticalAlignment="Top" Width="278" ItemsSource="{Binding movieList}" SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" FontSize="6" BorderBrush="Black" BorderThickness="2"/>
+
+        <StackPanel Margin="10,467,10,-39">
+            <TextBox x:Name="MovieName" PlaceholderText="Titel" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieTitel, Mode=TwoWay}" Width="606"/>
+            <TextBox x:Name="MovieDirector" PlaceholderText="Director" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieDirector, Mode=TwoWay}" Width="606"/>
+            <TextBox x:Name="MovieGenre" PlaceholderText="Genre" HorizontalAlignment="Left" Text="{Binding NewMovie.Genre, Mode=TwoWay}" Width="606"/>
+            <TextBox x:Name="MovieRelease" PlaceholderText="Release Date" HorizontalAlignment="Left" Text="{Binding NewMovie.DateOfRelase, Mode=TwoWay}" Width="606"/>
+
+            <Button x:Name="AddnewMovie" Content="Add" Command="{Binding addCommand, Mode=TwoWay}" Width="606" Height="29"/>
+            <Button x:Name="RemoveMovie" Content="Remove" Command="{Binding removeCommand, Mode=TwoWay}" Height="29" Width="606"/>
+            <Button x:Name="GenerateRandomMovie" Content="Random Movie" Command="{Binding generateRandomMovieCommand}" Height="29" Width="606"/>
+
+        </StackPanel>
+
+        <TextBox x:Name="DisplayListElement" PlaceholderText="Selected Movie" HorizontalAlignment="Left" Margin="288,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SelectedMovie}" BorderBrush="Black" BorderThickness="2" Height="206" Width="323" />
+        <TextBox x:Name="DisplayRandomMovie" PlaceholderText="Random Movie" HorizontalAlignment="Left" Margin="288,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="197" Width="323" Text="{Binding DisplayRandomMovie}" BorderBrush="Black" BorderThickness="2"/>
+
+
+
+
+
+    </Grid>
+</Page>
