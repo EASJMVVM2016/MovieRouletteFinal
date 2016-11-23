@@ -11,7 +11,8 @@ namespace MovieRoulette.Model
     {
         public MovieList() : base()
         {
-           
+           // this.Add(new Movie() { MovieTitel = "Shogun Assassin", MovieDirector = "Robert Houston", Genre = "Samurai Sword Flicks", DateOfRelase = "1980" });
+
         }
 
 

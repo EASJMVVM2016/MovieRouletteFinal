@@ -12,7 +12,7 @@ namespace MovieRoulette.Model
 
         public string MovieTitel
         {
-            get { return _movieTitel; }
+            get { return "Title " + _movieTitel; }
             set { _movieTitel = value; }
         }
 
@@ -20,7 +20,7 @@ namespace MovieRoulette.Model
 
         public string MovieDirector
         {
-            get { return _movieDirector; }
+            get { return "Director " + _movieDirector; }
             set { _movieDirector = value; }
         }
 
@@ -28,7 +28,7 @@ namespace MovieRoulette.Model
 
         public string Genre
         {
-            get { return _genre; }
+            get { return "Genre " + _genre; }
             set { _genre = value; }
         }
 
@@ -37,7 +37,7 @@ namespace MovieRoulette.Model
 
         public string DateOfRelase
         {
-            get { return _dateOfRelease; }
+            get { return "Released " + _dateOfRelease; }
             set { _dateOfRelease = value; }
         }
 

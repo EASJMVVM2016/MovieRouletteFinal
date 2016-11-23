@@ -81,10 +81,17 @@ namespace MovieRoulette.MainViewModel
 
         public void RandomMovie()
         {
-            Random randomMovie = new Random();
-            int listCount = randomMovie.Next(0, MovieList.Count);
-            DisplayRandomMovie = movieList[listCount];
+            if (movieList.Count == 0)
+            {
+                // Will crash if it attempts to random 0-0, in case of empty list, this if statement makes sure that it doesnt crash. 
+            }
+            else
+            {
+                Random randomMovie = new Random();
+                int listCount = randomMovie.Next(0, MovieList.Count);
+                DisplayRandomMovie = movieList[listCount];
         }
+    }
 
 
         public void AddNewMovie()
