@@ -26,5 +26,10 @@ namespace MovieRouletteFinal
         {
             this.InitializeComponent();
         }
+
+        private void MovieName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
