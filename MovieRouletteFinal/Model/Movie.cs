@@ -43,8 +43,8 @@ namespace MovieRoulette.Model
 
         public override string ToString()
         {
-            return $" \nTitel: {_movieTitel} \nGenre: {_genre} \nDirector: {_movieDirector} \nReleased: {_dateOfRelease}";
-            //return $" \nTitel: {_movieTitel}";
+            // return $" \nTitel: {_movieTitel} \nGenre: {_genre} \nDirector: {_movieDirector} \nReleased: {_dateOfRelease}";
+            return $" \n{_movieTitel}";
 
         }
 

@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using MovieRoulette.Model;
+using Windows.Storage;
+using Newtonsoft.Json;
+
 
 
 // next to do; random element prints out all parameters of list. 
@@ -18,12 +21,26 @@ namespace MovieRoulette.MainViewModel
 {
     class MovieViewModel : INotifyPropertyChanged
     {
-        public MovieList movieList { get; set; }
+        
+        
+        const string fileName = "SavedArchive.txt";
+
+        private MovieList _movieList;
+
+        public MovieList movieList
+        {
+            get { return _movieList; }
+            set { _movieList = value; OnPropertyChanged(nameof(movieList)); }
+        }
+
+
+        //public MovieList movieList { get; set; }  
 
         public RelayCommand addCommand { get; set; }
         public RelayCommand removeCommand { get; set; }
         public RelayCommand generateRandomMovieCommand { get; set; }
-
+        public RelayCommand saveMovieArchive { get; set; }
+        public RelayCommand retrieveMovieArchive { get; set; }
 
         private Movie _newMovie;
 
@@ -37,15 +54,8 @@ namespace MovieRoulette.MainViewModel
 
         public Movie SelectedMovie
         {
-            get
-            {
-                return selectedMovie;
-            }
-            set
-            {
-                selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie));
-
-            }
+            get { return selectedMovie; }
+            set { selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); }
         }
 
         private Movie _displayRandomMovie;
@@ -66,7 +76,8 @@ namespace MovieRoulette.MainViewModel
             addCommand = new RelayCommand(AddNewMovie, null);
             removeCommand = new RelayCommand(RemoveMovie, null);
             generateRandomMovieCommand = new RelayCommand(RandomMovie, null);
-
+            saveMovieArchive = new RelayCommand(SaveMovieArchive, null);
+            retrieveMovieArchive = new RelayCommand(RetriveSavedArchive, null);
 
         }
 
@@ -79,13 +90,42 @@ namespace MovieRoulette.MainViewModel
 
         public void AddNewMovie()
         {
-            movieList.Add(NewMovie);
+            Movie tempMovie = new Movie();
+            tempMovie.MovieTitel = NewMovie.MovieTitel;
+            tempMovie.Genre = NewMovie.Genre;
+            tempMovie.DateOfRelase = NewMovie.DateOfRelase;
+            tempMovie.MovieDirector = NewMovie.MovieDirector;
+
+            movieList.Add(tempMovie);
         }
 
         public void RemoveMovie()
         {
-            movieList.Remove(NewMovie);
+            movieList.Remove(SelectedMovie);
         }
+
+        public async void SaveMovieArchive()
+        {
+            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, 
+                                                                              CreationCollisionOption.ReplaceExisting);
+            string JsonData = JsonConvert.SerializeObject(movieList);
+
+            await FileIO.WriteTextAsync(localFile, JsonData);
+        }
+
+
+        public async void RetriveSavedArchive()
+        {
+            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+
+            string JsonData = await FileIO.ReadTextAsync(localFile);
+
+            movieList = JsonConvert.DeserializeObject<MovieList>(JsonData);
+
+        }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
