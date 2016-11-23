@@ -13,28 +13,63 @@
             <MainViewModel:MovieViewModel/>
         </Grid.DataContext>
 
-        <ListView x:Name="MovieList" HorizontalAlignment="Left" Height="252" Margin="349,65,0,0" VerticalAlignment="Top" Width="304" ItemsSource="{Binding MovieList}" SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" FontSize="6" BorderBrush="Black" BorderThickness="2"/>
+        <!--<ListView 
+            x:Name="MovieList"
+            HorizontalAlignment="Left" 
+            Height="252" 
+            Margin="349,65,0,0" 
+            VerticalAlignment="Top" 
+            Width="304" 
+            ItemsSource="{Binding MovieList}" 
+            SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" 
+            FontSize="6" BorderBrush="Black" 
+            BorderThickness="2"
+         />-->
 
-        <StackPanel HorizontalAlignment="Left" Height="252" Margin="653,65,0,0" VerticalAlignment="Top" Width="300" BorderBrush="Black" BorderThickness="2">
-            <TextBlock x:Name="DisplayRandomMovieTitel" TextWrapping="Wrap" Text="{Binding DisplayRandomMovie.MovieTitel}" FontSize="20"/>
-            <TextBlock x:Name="DisplayRandomMovieDirector" TextWrapping="Wrap" Text="{Binding DisplayRandomMovie.MovieDirector}" FontSize="20"/>
-            <TextBlock x:Name="DisplayRandomMovieGenre" TextWrapping="Wrap" Text="{Binding DisplayRandomMovie.Genre}" FontSize="20"/>
-            <TextBlock x:Name="DisplayRandomMovieDateOfRelease" TextWrapping="Wrap" Text="{Binding DisplayRandomMovie.DateOfRelase}" FontSize="20"/>
+        <ListView 
+            x:Name="MovieList"
+            HorizontalAlignment="Left" 
+            Height="252" 
+            Margin="349,65,0,0" 
+            VerticalAlignment="Top" 
+            Width="304"
+            FontSize="6" 
+            BorderBrush="Black" 
+            BorderThickness="2"
+            ItemsSource="{Binding MovieList}" 
+            SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=MovieTitel}" TextWrapping="Wrap" ></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+
+        <StackPanel HorizontalAlignment="Left" Height="179" Margin="653,65,0,0" VerticalAlignment="Top" Width="300" BorderBrush="Black" BorderThickness="2">
+            <TextBlock x:Name="filler" TextWrapping="Wrap" Text="" Height="34"/>
+            <TextBlock x:Name="DisplayRandomMovieTitel" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding DisplayRandomMovie.MovieTitel}" FontSize="20"/>
+            <TextBlock x:Name="DisplayRandomMovieDirector" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding DisplayRandomMovie.MovieDirector}" FontSize="20"/>
+            <TextBlock x:Name="DisplayRandomMovieGenre" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding DisplayRandomMovie.Genre}" FontSize="20"/>
+            <TextBlock x:Name="DisplayRandomMovieDateOfRelease" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding DisplayRandomMovie.DateOfRelase}" FontSize="20"/>
         </StackPanel>
 
 
 
-        <StackPanel HorizontalAlignment="Left" Height="252" Margin="958,65,0,0" VerticalAlignment="Top" Width="300" BorderBrush="Black" BorderThickness="2">
-            <TextBlock x:Name="selectedTitle" TextWrapping="Wrap" Text="{Binding SelectedMovie.MovieTitel}" FontSize="20"/>
-            <TextBlock x:Name="selectedDirector" TextWrapping="Wrap" Text="{Binding SelectedMovie.MovieDirector}" FontSize="20"/>
-            <TextBlock x:Name="selectedGenre" TextWrapping="Wrap" Text="{Binding SelectedMovie.Genre}" FontSize="20"/>
-            <TextBlock x:Name="selectedDate" TextWrapping="Wrap" Text="{Binding SelectedMovie.DateOfRelase}" FontSize="20"/>
+        <StackPanel HorizontalAlignment="Left" Height="179" Margin="958,65,0,0" VerticalAlignment="Top" Width="300" BorderBrush="Black" BorderThickness="2">
+            <TextBlock x:Name="Filler" TextWrapping="Wrap" Text="" Height="34" SelectionChanged="textBlock_SelectionChanged"/>
+            <TextBlock x:Name="selectedTitle" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieTitel}" FontSize="20"/>
+            <TextBlock x:Name="selectedDirector" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieDirector}" FontSize="20"/>
+            <TextBlock x:Name="selectedGenre" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.Genre}" FontSize="20"/>
+            <TextBlock x:Name="selectedDate" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.DateOfRelase}" FontSize="20"/>
         </StackPanel>
 
-        <TextBox x:Name="NewMovieDirector" PlaceholderText="Director" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieDirector, Mode=TwoWay}" Width="300" Margin="353,367,0,548" />
-        <TextBox x:Name="NewMovieGenre" PlaceholderText="Genre" HorizontalAlignment="Left" Text="{Binding NewMovie.Genre, Mode=TwoWay}" Width="300" Margin="353,417,0,494" />
-        <TextBox x:Name="NewMovieRelease" PlaceholderText="Release Date" HorizontalAlignment="Left" Text="{Binding NewMovie.DateOfRelase, Mode=TwoWay}" Width="300" Margin="357,471,0,440"/>
-        <TextBox x:Name="NewMovieName" PlaceholderText="Titel" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieTitel, Mode=TwoWay}" Width="300" Margin="357,525,0,390" TextChanged="MovieName_TextChanged" />
+        <TextBox x:Name="NewMovieDirector" PlaceholderText="Director" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieDirector, Mode=TwoWay}" Width="304" Margin="349,410,0,505" />
+        <TextBox x:Name="NewMovieGenre" PlaceholderText="Genre" HorizontalAlignment="Left" Text="{Binding NewMovie.Genre, Mode=TwoWay}" Width="304" Margin="349,455,0,456" />
+        <TextBox x:Name="NewMovieRelease" PlaceholderText="Release Date" HorizontalAlignment="Left" Text="{Binding NewMovie.DateOfRelase, Mode=TwoWay}" Width="304" Margin="349,504,0,407"/>
+        <TextBox x:Name="NewMovieTitle" PlaceholderText="Titel" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieTitel, Mode=TwoWay}" Width="304" Margin="349,366,0,549" TextChanged="MovieName_TextChanged" />
 
         <Button x:Name="AddnewMovie" Content="Add" Command="{Binding addCommand, Mode=TwoWay}" Height="33" Width="300" Margin="353,575,0,352"/>
         <Button x:Name="RemoveMovie" Content="Remove" Command="{Binding removeCommand, Mode=TwoWay}" Height="33" Width="304" Margin="353,651,0,276"/>
