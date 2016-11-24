@@ -87,13 +87,10 @@ namespace MovieRoulette.MainViewModel
             if (movieList.Count == 0)
             {
 
-              
                 MessageDialog noArchiveOpen = new MessageDialog("No Archive is open");
                 noArchiveOpen.Commands.Add(new UICommand { Label = "Ok"} );
                 noArchiveOpen.ShowAsync().AsTask();
-
-
-                
+                               
 
             }
             else

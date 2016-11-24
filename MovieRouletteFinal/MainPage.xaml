@@ -8,16 +8,109 @@
     x:Class="MovieRouletteFinal.MainPage"
     mc:Ignorable="d" Height="830.4">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="960" Width="1280" VerticalAlignment="Top" Margin="0,0,10,-130">
+    <Grid Height="960" Width="1280" VerticalAlignment="Top" Margin="0,0,10,-130">
         <Grid.DataContext>
             <MainViewModel:MovieViewModel/>
         </Grid.DataContext>
+        <Grid.Background>
+            <ImageBrush ImageSource="Image/grid_background_image.png" ></ImageBrush>
+        </Grid.Background>
 
-        <ListView 
+
+
+        <!--<ListView 
             x:Name="MovieList"
             HorizontalAlignment="Left" 
             Height="152" 
-            Margin="364,85,0,0" 
+            Margin="364,90,0,0" 
+            VerticalAlignment="Top" 
+            Width="440"
+            FontSize="2" 
+            BorderBrush="Black" 
+            BorderThickness="2"
+            ItemsSource="{Binding MovieList}" 
+            SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" >
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=MovieTitel}" TextWrapping="Wrap" FontSize="20"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>-->
+
+        <TextBlock x:Name="selectedTitle"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieTitel}" FontSize="20" Margin="364,262,476,653"/>
+        <TextBlock x:Name="selectedDirector" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieDirector}" FontSize="20" Margin="364,312,476,603"/>
+        <TextBlock x:Name="selectedGenre" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.Genre}" FontSize="20" Margin="364,362,476,553"/>
+        <TextBlock x:Name="selectedDate" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.DateOfRelase}" FontSize="20" Margin="364,412,476,503"/>
+
+        <TextBox x:Name="NewMovieDirector" PlaceholderText="Director" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieDirector, Mode=TwoWay}" Width="158" Margin="404,481,0,434" BorderBrush="#FFE6E600" />
+        <TextBox x:Name="NewMovieGenre" PlaceholderText="Genre" HorizontalAlignment="Left" Text="{Binding NewMovie.Genre, Mode=TwoWay}" Width="158" Margin="567,481,0,434" BorderBrush="#FFE6E600" />
+        <TextBox x:Name="NewMovieRelease" PlaceholderText="Release Date" HorizontalAlignment="Left" Text="{Binding NewMovie.DateOfRelase, Mode=TwoWay}" Width="158" Margin="730,481,0,434" BorderBrush="#FFE6E600"/>
+        <TextBox x:Name="NewMovieTitle" PlaceholderText="Title" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieTitel, Mode=TwoWay}" Width="158" Margin="241,481,0,434" BorderBrush="#FFE6E600" />
+
+        <Button x:Name="AddnewMovie" Content="Add Movie" Command="{Binding addCommand, Mode=TwoWay}" Height="45" Width="158" Margin="939,481,0,434" Background="#e6e600"/>
+        <Button x:Name="RemoveMovie" Content="Remove Movie" Command="{Binding removeCommand, Mode=TwoWay}" Height="33" Width="222" Margin="815,204,0,723" Background="#e6e600"/>
+        <Button x:Name="GenerateRandomMovie" Content="Random Movie" Command="{Binding generateRandomMovieCommand}" Height="33" Width="222" Margin="815,166,0,761" Background="#e6e600"/>
+        <Button x:Name="SaveArchive" Content="Save Archive" Command="{Binding saveArchive, Mode=TwoWay}" Height="33" Width="222" Margin="815,128,0,799" Background="#e6e600"/>
+        <Button x:Name="OpenArchive" Content="Open Archive" Command="{Binding openArchive, Mode=TwoWay}" Height="33" Width="222" Margin="815,90,0,837" Background="#e6e600"/>
+
+        <TextBlock 
+            x:Name="ArchiveHeader" 
+            FontWeight="Black" HorizontalAlignment="Left" Margin="506,45,0,0" 
+            TextWrapping="Wrap" Text="Movie Archive" 
+            VerticalAlignment="Top" 
+            Width="208" Height="40" FontSize="26" />
+
+
+        <TextBlock 
+            x:Name="TitleText" 
+            HorizontalAlignment="Left" 
+            Margin="312,262,0,0" 
+            TextWrapping="Wrap" 
+            Text="Title" 
+            VerticalAlignment="Top" 
+            Height="45" Width="47" 
+            FontSize="20"/>
+        <TextBlock 
+                x:Name="DirectorText" 
+                HorizontalAlignment="Left" 
+                Margin="281,312,0,0" 
+                TextWrapping="Wrap" 
+                Text="Director" 
+                VerticalAlignment="Top" 
+                Height="45" Width="78" 
+                FontSize="20"/>
+        <TextBlock 
+            x:Name="GenreText" 
+            HorizontalAlignment="Left" 
+            Margin="296,362,0,0" 
+            TextWrapping="Wrap" 
+            Text="Genre" 
+            VerticalAlignment="Top" 
+            Height="45" Width="63" 
+            FontSize="20"/>
+        <TextBlock 
+            x:Name="ReleasedText" 
+            HorizontalAlignment="Left" 
+            Margin="272,412,0,0" 
+            TextWrapping="Wrap" 
+            Text="Released" 
+            VerticalAlignment="Top" 
+            Height="45" Width="87" 
+            FontSize="20"/>
+        <Grid HorizontalAlignment="Left" Height="147" Margin="370,90,0,0" VerticalAlignment="Top" Width="440" Background="AntiqueWhite"/>
+        <ListView 
+            x:Name="MovieList"
+            HorizontalAlignment="Left" 
+            Height="147" 
+            Margin="370,90,0,0" 
             VerticalAlignment="Top" 
             Width="440"
             FontSize="2" 
@@ -40,22 +133,6 @@
 
         </ListView>
 
-        <TextBlock x:Name="selectedTitle"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieTitel}" FontSize="20" Margin="364,262,476,653"/>
-        <TextBlock x:Name="selectedDirector" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieDirector}" FontSize="20" Margin="364,312,476,603"/>
-        <TextBlock x:Name="selectedGenre" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.Genre}" FontSize="20" Margin="364,362,476,553"/>
-        <TextBlock x:Name="selectedDate" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.DateOfRelase}" FontSize="20" Margin="364,412,476,503"/>
-
-        <TextBox x:Name="NewMovieDirector" PlaceholderText="Director" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieDirector, Mode=TwoWay}" Width="158" Margin="364,481,0,434" />
-        <TextBox x:Name="NewMovieGenre" PlaceholderText="Genre" HorizontalAlignment="Left" Text="{Binding NewMovie.Genre, Mode=TwoWay}" Width="158" Margin="527,481,0,434" />
-        <TextBox x:Name="NewMovieRelease" PlaceholderText="Release Date" HorizontalAlignment="Left" Text="{Binding NewMovie.DateOfRelase, Mode=TwoWay}" Width="158" Margin="690,481,0,434"/>
-        <TextBox x:Name="NewMovieTitle" PlaceholderText="Title" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieTitel, Mode=TwoWay}" Width="158" Margin="201,481,0,434" />
-
-        <Button x:Name="AddnewMovie" Content="Add Movie" Command="{Binding addCommand, Mode=TwoWay}" Height="45" Width="158" Margin="915,481,0,434"/>
-        <Button x:Name="RemoveMovie" Content="Remove Movie" Command="{Binding removeCommand, Mode=TwoWay}" Height="33" Width="222" Margin="815,204,0,723"/>
-        <Button x:Name="GenerateRandomMovie" Content="Random Movie" Command="{Binding generateRandomMovieCommand}" Height="33" Width="222" Margin="815,166,0,761"/>
-        <Button x:Name="SaveArchive" Content="Save Archive" Command="{Binding saveArchive, Mode=TwoWay}" Height="33" Width="222" Margin="815,128,0,799"/>
-        <Button x:Name="OpenArchive" Content="Open Archive" Command="{Binding openArchive, Mode=TwoWay}" Height="33" Width="222" Margin="815,90,0,837"/>
-        <TextBlock x:Name="ArchiveHeader" FontWeight="Black" HorizontalAlignment="Left" Margin="584,15,0,0" TextWrapping="Wrap" Text="Movie Archive" VerticalAlignment="Top" Width="686" Height="27"/>
 
     </Grid>
 </Page>
