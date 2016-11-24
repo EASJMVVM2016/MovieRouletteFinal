@@ -35,7 +35,7 @@
 
         <TextBlock 
             x:Name="ArchiveHeader" 
-            FontWeight="Black" HorizontalAlignment="Left" Margin="549,45,0,0" 
+            FontWeight="Black" HorizontalAlignment="Left" Margin="531,45,0,0" 
             TextWrapping="Wrap" Text="Movie Archive" 
             VerticalAlignment="Top" 
             Width="208" Height="40" FontSize="26" Foreground="#FF5B5A64" />
