@@ -7,6 +7,8 @@ using System.ComponentModel;
 using MovieRoulette.Model;
 using Windows.Storage;
 using Newtonsoft.Json;
+using Windows.UI.Popups;
+
 
 
 
@@ -116,21 +118,30 @@ namespace MovieRoulette.MainViewModel
         public async void SaveArchive()
         {
             StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, 
-                                                                              CreationCollisionOption.ReplaceExisting);
+                                                                           CreationCollisionOption.ReplaceExisting);
             string JsonData = JsonConvert.SerializeObject(movieList);
-
-            await FileIO.WriteTextAsync(localFile, JsonData);
+             await FileIO.WriteTextAsync(localFile, JsonData);
         }
 
 
         public async void OpenArchive()
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+            try
+            {
+                StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+                string JsonData = await FileIO.ReadTextAsync(localFile);
+                MovieList = JsonConvert.DeserializeObject<MovieList>(JsonData);
 
-            string JsonData = await FileIO.ReadTextAsync(localFile);
+            }
+            catch (Exception)
+            {
+                MessageDialog noArchive = new MessageDialog("No Saved Archive");
+                noArchive.Commands.Add(new UICommand { Label = "Ok"});
+                await noArchive.ShowAsync();
+                                                
+            }
 
-            MovieList = JsonConvert.DeserializeObject<MovieList>(JsonData);
-
+            
         }
 
 
