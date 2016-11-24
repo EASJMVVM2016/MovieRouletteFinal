@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,19 +23,20 @@ namespace MovieRouletteFinal
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MainPage()
+        public MainPage()   
         {
+
             this.InitializeComponent();
-        }
 
-        private void MovieName_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            
 
-        }
+            ApplicationView.PreferredLaunchViewSize = new Size(1280,600);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            
 
-        private void textBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
 
         }
+
+        
     }
 }
