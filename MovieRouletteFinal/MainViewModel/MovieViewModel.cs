@@ -105,7 +105,7 @@ namespace MovieRoulette.MainViewModel
             tempMovie.DateOfRelase = NewMovie.DateOfRelase;
             tempMovie.MovieDirector = NewMovie.MovieDirector;
 
-            if (NewMovie.DateOfRelase.Any(char.IsDigit) == false )
+            if (NewMovie.DateOfRelase.All(char.IsDigit) == false )
             {
                 MessageDialog notNumber = new MessageDialog("Release must be a number!");
                 notNumber.Commands.Add(new UICommand { Label = "Ok" });
