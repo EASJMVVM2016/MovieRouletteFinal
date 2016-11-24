@@ -12,6 +12,7 @@ using Windows.UI.Popups;
 
 
 
+
 // next to do; random element prints out all parameters of list. 
 // next to do, add button to generate that random selection from the arcive
 // split list display and details from movie
@@ -85,6 +86,15 @@ namespace MovieRoulette.MainViewModel
         {
             if (movieList.Count == 0)
             {
+
+              
+                MessageDialog noArchiveOpen = new MessageDialog("No Archive is open");
+                noArchiveOpen.Commands.Add(new UICommand { Label = "Ok"} );
+                noArchiveOpen.ShowAsync().AsTask();
+
+
+                
+
             }
             else
             {
@@ -135,9 +145,9 @@ namespace MovieRoulette.MainViewModel
             }
             catch (Exception)
             {
-                MessageDialog noArchive = new MessageDialog("No Saved Archive");
-                noArchive.Commands.Add(new UICommand { Label = "Ok"});
-                await noArchive.ShowAsync();
+                MessageDialog noArchiveSaved = new MessageDialog("No Saved Archive");
+                noArchiveSaved.Commands.Add(new UICommand { Label = "Ok"});
+                await noArchiveSaved.ShowAsync();
                                                 
             }
 
