@@ -45,15 +45,15 @@
 
         </ListView>-->
 
-        <TextBlock x:Name="selectedTitle"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieTitel}" FontSize="20" Margin="364,262,476,653"/>
-        <TextBlock x:Name="selectedDirector" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieDirector}" FontSize="20" Margin="364,312,476,603"/>
-        <TextBlock x:Name="selectedGenre" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.Genre}" FontSize="20" Margin="364,362,476,553"/>
-        <TextBlock x:Name="selectedDate" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.DateOfRelase}" FontSize="20" Margin="364,412,476,503"/>
+        <TextBlock x:Name="selectedTitle"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieTitel}" FontSize="20" Margin="364,262,476,653" Foreground="#FF5B5A64"/>
+        <TextBlock x:Name="selectedDirector" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.MovieDirector}" FontSize="20" Margin="364,312,476,603" Foreground="#FF5B5A64"/>
+        <TextBlock x:Name="selectedGenre" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.Genre}" FontSize="20" Margin="364,362,476,553" Foreground="#FF5B5A64"/>
+        <TextBlock x:Name="selectedDate" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedMovie.DateOfRelase}" FontSize="20" Margin="364,412,476,503" Foreground="#FF5B5A64"/>
 
-        <TextBox x:Name="NewMovieDirector" PlaceholderText="Director" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieDirector, Mode=TwoWay}" Width="158" Margin="404,481,0,434" BorderBrush="#FFE6E600" />
-        <TextBox x:Name="NewMovieGenre" PlaceholderText="Genre" HorizontalAlignment="Left" Text="{Binding NewMovie.Genre, Mode=TwoWay}" Width="158" Margin="567,481,0,434" BorderBrush="#FFE6E600" />
-        <TextBox x:Name="NewMovieRelease" PlaceholderText="Release Date" HorizontalAlignment="Left" Text="{Binding NewMovie.DateOfRelase, Mode=TwoWay}" Width="158" Margin="730,481,0,434" BorderBrush="#FFE6E600"/>
-        <TextBox x:Name="NewMovieTitle" PlaceholderText="Title" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieTitel, Mode=TwoWay}" Width="158" Margin="241,481,0,434" BorderBrush="#FFE6E600" />
+        <TextBox x:Name="NewMovieDirector" PlaceholderText="Director" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieDirector, Mode=TwoWay}" Width="158" Margin="404,481,0,434" BorderBrush="#FFE6E600" SelectionHighlightColor="#FFE6E600" />
+        <TextBox x:Name="NewMovieGenre" PlaceholderText="Genre" HorizontalAlignment="Left" Text="{Binding NewMovie.Genre, Mode=TwoWay}" Width="158" Margin="567,481,0,434" BorderBrush="#FFE6E600" SelectionHighlightColor="#FFE6E600"/>
+        <TextBox x:Name="NewMovieRelease" PlaceholderText="Release Date" HorizontalAlignment="Left" Text="{Binding NewMovie.DateOfRelase, Mode=TwoWay}" Width="158" Margin="730,481,0,434" BorderBrush="#FFE6E600" SelectionHighlightColor="#FFE6E600"/>
+        <TextBox x:Name="NewMovieTitle" PlaceholderText="Title" HorizontalAlignment="Left" Text="{Binding NewMovie.MovieTitel, Mode=TwoWay}" Width="158" Margin="241,481,0,434" BorderBrush="#FFE6E600" SelectionHighlightColor="#FFE6E600"/>
 
         <Button x:Name="AddnewMovie" Content="Add Movie" Command="{Binding addCommand, Mode=TwoWay}" Height="45" Width="158" Margin="939,481,0,434" Background="#e6e600"/>
         <Button x:Name="RemoveMovie" Content="Remove Movie" Command="{Binding removeCommand, Mode=TwoWay}" Height="33" Width="222" Margin="815,204,0,723" Background="#e6e600"/>
@@ -66,7 +66,7 @@
             FontWeight="Black" HorizontalAlignment="Left" Margin="506,45,0,0" 
             TextWrapping="Wrap" Text="Movie Archive" 
             VerticalAlignment="Top" 
-            Width="208" Height="40" FontSize="26" />
+            Width="208" Height="40" FontSize="26" Foreground="#FF5B5A64" />
 
 
         <TextBlock 
@@ -77,7 +77,7 @@
             Text="Title" 
             VerticalAlignment="Top" 
             Height="45" Width="47" 
-            FontSize="20"/>
+            FontSize="20" Foreground="#FF5B5A64"/>
         <TextBlock 
                 x:Name="DirectorText" 
                 HorizontalAlignment="Left" 
@@ -86,7 +86,7 @@
                 Text="Director" 
                 VerticalAlignment="Top" 
                 Height="45" Width="78" 
-                FontSize="20"/>
+                FontSize="20" Foreground="#FF5B5A64"/>
         <TextBlock 
             x:Name="GenreText" 
             HorizontalAlignment="Left" 
@@ -95,7 +95,7 @@
             Text="Genre" 
             VerticalAlignment="Top" 
             Height="45" Width="63" 
-            FontSize="20"/>
+            FontSize="20" Foreground="#FF5B5A64"/>
         <TextBlock 
             x:Name="ReleasedText" 
             HorizontalAlignment="Left" 
@@ -104,7 +104,7 @@
             Text="Released" 
             VerticalAlignment="Top" 
             Height="45" Width="87" 
-            FontSize="20"/>
+            FontSize="20" Foreground="#FF5B5A64"/>
         <Grid HorizontalAlignment="Left" Height="147" Margin="370,90,0,0" VerticalAlignment="Top" Width="440" Background="AntiqueWhite"/>
         <ListView 
             x:Name="MovieList"

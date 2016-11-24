@@ -30,6 +30,9 @@ namespace MovieRouletteFinal
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            
+
         }
 
         /// <summary>
