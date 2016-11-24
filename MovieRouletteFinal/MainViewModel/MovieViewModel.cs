@@ -24,13 +24,12 @@ namespace MovieRoulette.MainViewModel
         
         
         const string fileName = "SavedArchive.txt";
-
-
+        
         public RelayCommand addCommand { get; set; }
         public RelayCommand removeCommand { get; set; }
         public RelayCommand generateRandomMovieCommand { get; set; }
-        public RelayCommand saveMovieArchive { get; set; }
-        public RelayCommand retrieveMovieArchive { get; set; }
+        public RelayCommand saveArchive { get; set; }
+        public RelayCommand openArchive { get; set; }
 
         private MovieList movieList;
         public MovieList MovieList
@@ -67,29 +66,31 @@ namespace MovieRoulette.MainViewModel
         public MovieViewModel()
         {
             MovieList = new MovieList();
+
             selectedMovie = new Movie();
             NewMovie = new Movie();
 
             addCommand = new RelayCommand(AddNewMovie, null);
             removeCommand = new RelayCommand(RemoveMovie, null);
             generateRandomMovieCommand = new RelayCommand(RandomMovie, null);
-            saveMovieArchive = new RelayCommand(SaveMovieArchive, null);
-            retrieveMovieArchive = new RelayCommand(RetriveSavedArchive, null);
+            saveArchive = new RelayCommand(SaveArchive, null);
+            openArchive = new RelayCommand(OpenArchive, null);
 
         }
 
-
+        
         public void RandomMovie()
         {
             if (movieList.Count == 0)
             {
-                // Will crash if it attempts to random 0-0, in case of empty list, this if statement makes sure that it doesnt crash. 
             }
             else
             {
                 Random randomMovie = new Random();
                 int listCount = randomMovie.Next(0, MovieList.Count);
                 DisplayRandomMovie = movieList[listCount];
+                SelectedMovie = DisplayRandomMovie;
+                
         }
     }
 
@@ -112,7 +113,7 @@ namespace MovieRoulette.MainViewModel
         }
 
 
-        public async void SaveMovieArchive()
+        public async void SaveArchive()
         {
             StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, 
                                                                               CreationCollisionOption.ReplaceExisting);
@@ -122,7 +123,7 @@ namespace MovieRoulette.MainViewModel
         }
 
 
-        public async void RetriveSavedArchive()
+        public async void OpenArchive()
         {
             StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
 
