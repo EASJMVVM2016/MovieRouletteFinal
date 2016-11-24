@@ -58,14 +58,7 @@ namespace MovieRoulette.MainViewModel
         }
 
 
-        private Movie displayRandomMovie;
-        public Movie DisplayRandomMovie
-        {
-            get { return displayRandomMovie; }
-            set { displayRandomMovie = value; OnPropertyChanged(nameof(DisplayRandomMovie)); }
-        }
-
-
+        
         public MovieViewModel()
         {
             MovieList = new MovieList();
@@ -97,7 +90,7 @@ namespace MovieRoulette.MainViewModel
             {
                 Random randomMovie = new Random();
                 int listCount = randomMovie.Next(0, MovieList.Count);
-                DisplayRandomMovie = movieList[listCount];
+                Movie DisplayRandomMovie = movieList[listCount];
                 SelectedMovie = DisplayRandomMovie;
                 
         }
@@ -112,7 +105,17 @@ namespace MovieRoulette.MainViewModel
             tempMovie.DateOfRelase = NewMovie.DateOfRelase;
             tempMovie.MovieDirector = NewMovie.MovieDirector;
 
-            movieList.Add(tempMovie);
+            if (NewMovie.DateOfRelase.Any(char.IsDigit) == false )
+            {
+                MessageDialog notNumber = new MessageDialog("Release must be a number!");
+                notNumber.Commands.Add(new UICommand { Label = "Ok" });
+                notNumber.ShowAsync().AsTask();
+
+            }
+            else
+            {
+                movieList.Add(tempMovie);
+            }
         }
 
 
