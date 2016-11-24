@@ -8,12 +8,12 @@ namespace MovieRoulette.Model
 {
     class Movie
     {
-        private string _movieTitel;
+        private string _movieTitle;
 
-        public string MovieTitel
+        public string MovieTitle
         {
-            get { return _movieTitel; }
-            set { _movieTitel = value; }
+            get { return _movieTitle; }
+            set { _movieTitle = value; }
         }
 
         private string _movieDirector;
@@ -44,7 +44,7 @@ namespace MovieRoulette.Model
         public override string ToString()
         {
             // return $" \nTitel: {_movieTitel} \nGenre: {_genre} \nDirector: {_movieDirector} \nReleased: {_dateOfRelease}";
-            return $" \n{_movieTitel}";
+            return $" \n{_movieTitle}";
 
         }
 

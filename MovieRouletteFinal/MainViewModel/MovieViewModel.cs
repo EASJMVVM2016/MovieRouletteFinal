@@ -24,8 +24,7 @@ namespace MovieRoulette.MainViewModel
 {
     class MovieViewModel : INotifyPropertyChanged
     {
-        
-        
+                
         const string fileName = "SavedArchive.txt";
         
         public RelayCommand addCommand { get; set; }
@@ -40,16 +39,14 @@ namespace MovieRoulette.MainViewModel
             get { return movieList; }
             set { movieList = value; OnPropertyChanged(nameof(MovieList)); }
         }
-
-
+        
         private Movie newMovie;
         public Movie NewMovie
         {
             get { return newMovie; }
             set { newMovie = value; }
         }
-
-
+        
         private Movie selectedMovie;
         public Movie SelectedMovie
         {
@@ -57,8 +54,7 @@ namespace MovieRoulette.MainViewModel
             set { selectedMovie = value; OnPropertyChanged(nameof(SelectedMovie)); }
         }
 
-
-        
+               
         public MovieViewModel()
         {
             MovieList = new MovieList();
@@ -74,13 +70,12 @@ namespace MovieRoulette.MainViewModel
 
         }
 
-        
         public void RandomMovie()
         {
             if (movieList.Count == 0)
             {
 
-                MessageDialog noArchiveOpen = new MessageDialog("No Archive is open");
+                MessageDialog noArchiveOpen = new MessageDialog("Your Archive is empty or not opened");
                 noArchiveOpen.Commands.Add(new UICommand { Label = "Ok"} );
                 noArchiveOpen.ShowAsync().AsTask();
                                
@@ -93,21 +88,21 @@ namespace MovieRoulette.MainViewModel
                 Movie DisplayRandomMovie = movieList[listCount];
                 SelectedMovie = DisplayRandomMovie;
                 
+            }
         }
-    }
 
 
         public void AddNewMovie()
         {
             Movie tempMovie = new Movie();
-            tempMovie.MovieTitel = NewMovie.MovieTitel;
+            tempMovie.MovieTitle = NewMovie.MovieTitle;
             tempMovie.Genre = NewMovie.Genre;
             tempMovie.DateOfRelase = NewMovie.DateOfRelase;
             tempMovie.MovieDirector = NewMovie.MovieDirector;
 
-            if (string.IsNullOrEmpty(NewMovie.MovieTitel))
+            if (string.IsNullOrEmpty(NewMovie.MovieTitle))
             {
-                MessageDialog noTitle = new MessageDialog("You must add a Title!");
+                MessageDialog noTitle = new MessageDialog("You must add a title!");
                 noTitle.Commands.Add(new UICommand { Label = "Ok" });
                 noTitle.ShowAsync().AsTask();
 
