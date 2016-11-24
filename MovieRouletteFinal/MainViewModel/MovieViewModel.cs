@@ -105,7 +105,14 @@ namespace MovieRoulette.MainViewModel
             tempMovie.DateOfRelase = NewMovie.DateOfRelase;
             tempMovie.MovieDirector = NewMovie.MovieDirector;
 
-            if (NewMovie.DateOfRelase.All(char.IsDigit) == false )
+            if (string.IsNullOrEmpty(NewMovie.MovieTitel))
+            {
+                MessageDialog noTitle = new MessageDialog("You must add a Title!");
+                noTitle.Commands.Add(new UICommand { Label = "Ok" });
+                noTitle.ShowAsync().AsTask();
+
+            }
+            else if (NewMovie.DateOfRelase.All(char.IsDigit) == false)
             {
                 MessageDialog notNumber = new MessageDialog("Release must be a number!");
                 notNumber.Commands.Add(new UICommand { Label = "Ok" });

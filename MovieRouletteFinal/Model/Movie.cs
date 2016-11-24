@@ -37,7 +37,7 @@ namespace MovieRoulette.Model
 
         public string DateOfRelase
         {
-            get { return _dateOfRelease; }
+            get { return "" + _dateOfRelease; } // just makes sure that doest crash on empty release field, since the string is never null, aka empty, but it wont mess with the code that checks for numbers in the string.
             set { _dateOfRelease = value; }
         }
 
